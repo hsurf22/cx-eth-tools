@@ -17,14 +17,11 @@ import HelloWorld from './components/HelloWorld.vue';
 </template>
 
 <style lang="scss">
-@import './assets/base.css';
+@import './assets/base.scss';
 
-body {
-  background-color: black;
-}
 .content-container {
-  width: 800px;
-  height: 600px;
+  width: 700px;
+  height: 500px;
   background-color: white;
   padding: 20px;
 }
