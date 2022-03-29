@@ -8,9 +8,8 @@ export default defineConfig({
   plugins: [vue()],
   resolve: {
     alias: {
-      '@': fileURLToPath(new URL('./src', import.meta.url)),
-      https: 'agent-base',
-    },
+      '@': fileURLToPath(new URL('./src', import.meta.url))
+    }
   },
-  server: { https: true, open: true, port: 3000 },
+  server: { https: true, open: false, port: 3000 }
 });
