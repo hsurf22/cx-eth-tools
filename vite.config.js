@@ -9,7 +9,8 @@ export default defineConfig({
   resolve: {
     alias: {
       '@': fileURLToPath(new URL('./src', import.meta.url)),
+      https: 'agent-base',
     },
   },
-  server: { https: true },
+  server: { https: true, open: true, port: 3000 },
 });

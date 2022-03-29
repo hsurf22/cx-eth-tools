@@ -1,9 +1,16 @@
 <script setup>
 import Web3 from 'web3';
 
-const web3 = new Web3(Web3.givenProvider || 'ws://localhost:8545');
+// connect to public RPC URL
+const url = 'https://rpc.ankr.com/eth';
 
-console.log(web3);
+// set the provider
+const provider = new Web3(new Web3.providers.HttpProvider(url));
+
+// display the current block number
+provider.eth.getBlockNumber().then((result) => {
+  console.log('Current block number: ' + result);
+});
 </script>
 
 <template>

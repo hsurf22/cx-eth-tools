@@ -8,6 +8,7 @@
     "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs --fix --ignore-path .gitignore"
   },
   "dependencies": {
+    "agent-base": "^6.0.2",
     "axios": "^0.26.1",
     "buffer": "^6.0.3",
     "events": "^3.3.0",
