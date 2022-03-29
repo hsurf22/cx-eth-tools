@@ -25,6 +25,14 @@ const provider = new ethers.providers.JsonRpcProvider(
 //const balance = await provider.getBalance('ethers.eth');
 
 console.log(provider);
+
+export default {
+  data() {
+    return {};
+  },
+  methods: {},
+  mounted() {}
+};
 </script>
 
 <style

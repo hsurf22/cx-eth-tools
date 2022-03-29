@@ -3,16 +3,34 @@ import HelloWorld from './components/HelloWorld.vue';
 </script>
 
 <template>
-  <HelloWorld msg="You did it!" />
-
-  <main>
-    <div>End</div>
-  </main>
+  <div class="content-container">
+    <div class="mb-1">
+      Ethereum address: 0xAa682624a57b0Ac4215BeCa5126b8C2bD61609fF
+    </div>
+    <nav class="top-nav">
+      <button>Wallet information</button>
+    </nav>
+    <main>
+      <HelloWorld msg="You did it!" />
+    </main>
+  </div>
 </template>
 
-<style
-  scoped
-  lang="scss"
->
-/*@import './assets/base.css';*/
+<style lang="scss">
+@import './assets/base.css';
+
+body {
+  background-color: black;
+}
+.content-container {
+  width: 800px;
+  height: 600px;
+  background-color: white;
+  padding: 20px;
+}
+.top-nav {
+  margin-bottom: 20px;
+}
+main {
+}
 </style>
