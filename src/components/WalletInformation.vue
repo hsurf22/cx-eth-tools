@@ -10,7 +10,7 @@ defineProps({
 </script>
 
 <template>
-  <div>Hi</div>
+  <div>Wallet information</div>
 </template>
 
 <script>

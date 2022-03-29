@@ -86,6 +86,22 @@ div {
   font-size: 1rem;
 }
 
+.mr-1 {
+  margin-right: 0.5rem;
+}
+
 .mb-1 {
   margin-bottom: 0.5rem;
+}
+
+button {
+  cursor: pointer;
+  padding: 7px;
+  border-radius: 4px;
+  &.inactive {
+    border: 2px solid #e2e2e2;
+  }
+  &.active {
+    border: 2px solid black;
+  }
 }
