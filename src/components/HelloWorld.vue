@@ -22,9 +22,9 @@ const provider = new ethers.providers.JsonRpcProvider(
 
 //const signer = provider.getSigner();
 
-const balance = await provider.getBalance('ethers.eth');
+//const balance = await provider.getBalance('ethers.eth');
 
-console.log(balance);
+console.log(provider);
 </script>
 
 <style
