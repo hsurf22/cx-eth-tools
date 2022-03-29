@@ -10,6 +10,9 @@ import HelloWorld from './components/HelloWorld.vue';
   </main>
 </template>
 
-<style scoped lang="scss">
-//@import './assets/base.css';
+<style
+  scoped
+  lang="scss"
+>
+/*@import './assets/base.css';*/
 </style>

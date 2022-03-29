@@ -27,7 +27,10 @@ const balance = await provider.getBalance('ethers.eth');
 console.log(balance);
 </script>
 
-<style scoped lang="scss">
+<style
+  scoped
+  lang="scss"
+>
 div {
   font-size: 30px;
 }
