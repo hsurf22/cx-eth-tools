@@ -1,47 +1,90 @@
 <script setup>
-import WalletInformation from './components/WalletInformation.vue';
-import Tokens from './components/Tokens.vue';
+import Settings from './components/PageSettings/PageSettings.vue';
+import EthAddress from './components/BlockEthAddress/BlockEthAddress.vue';
+import WalletInfo from './components/PageWallet/PageWallet.vue';
+import Tokens from './components/PageTokens/PageTokens.vue';
 </script>
 
 <template>
   <div class="content-container">
-    <div class="mb-1">
-      Ethereum address: 0xAa682624a57b0Ac4215BeCa5126b8C2bD61609fF
+    <Settings
+      :displayed="showSettings"
+      @close="showSettings = false"
+      v-show="showSettings"
+    />
+
+    <div v-show="!showSettings">
+      <!-- ============================================================= -->
+      <!-- Settings toggle button -->
+      <!-- ============================================================= -->
+      <div
+        class="settings-button cursor--pointer"
+        @click="showSettings = !showSettings"
+      >
+        <img
+          src="@/assets/img/icons/Settings.svg"
+          alt="Settings"
+          height="30"
+        />
+      </div>
+
+      <!-- ============================================================= -->
+      <!-- Top nav -->
+      <!-- ============================================================= -->
+      <nav class="mb-1">
+        <button
+          @click="activePage = 1"
+          class="mr-1"
+          :class="activePage == 1 ? 'active' : ''"
+        >
+          Wallet information
+        </button>
+        <button
+          @click="activePage = 2"
+          :class="activePage == 2 ? 'active' : ''"
+        >
+          Tokens
+        </button>
+      </nav>
+
+      <!-- ============================================================= -->
+      <!-- Main content -->
+      <!-- ============================================================= -->
+      <main>
+        <EthAddress class="mb-1" />
+        <WalletInfo v-show="activePage === 1" />
+        <Tokens v-show="activePage === 2" />
+      </main>
     </div>
-    <nav class="top-nav">
-      <button
-        @click="activePage = 1"
-        class="mr-1"
-        :class="activePage == 1 ? 'active' : 'inactive'"
-      >
-        Wallet information
-      </button>
-      <button
-        @click="activePage = 2"
-        :class="activePage == 2 ? 'active' : 'inactive'"
-      >
-        Tokens
-      </button>
-    </nav>
-    <main>
-      <WalletInformation v-show="activePage === 1" />
-      <Tokens v-show="activePage === 2" />
-    </main>
   </div>
 </template>
 
 <script>
-export default {
+import { defineComponent } from 'vue';
+import { useSettingsStore } from '@/stores/settings';
+
+export default defineComponent({
   data() {
     return {
-      activePage: 1
+      settingsStore: null,
+      activePage: 1,
+      showSettings: false
     };
+  },
+  methods: {
+    loadSettings() {
+      this.settingsStore = useSettingsStore();
+      this.settingsStore.ethAddress = localStorage.getItem('ethAddress');
+    }
+  },
+  mounted() {
+    this.loadSettings();
   }
-};
+});
 </script>
 
 <style lang="scss">
-@import './assets/base.scss';
+@import './assets/css/base.scss';
 </style>
 
 <style
@@ -52,9 +95,15 @@ export default {
   width: 700px;
   height: 500px;
   background-color: white;
-  padding: 20px;
+  padding: 15px;
+  position: relative;
+  margin: 0 auto;
 }
-.top-nav {
-  margin-bottom: 20px;
+
+.settings-button {
+  position: absolute;
+  right: 0px;
+  top: 0px;
+  z-index: 100;
 }
 </style>

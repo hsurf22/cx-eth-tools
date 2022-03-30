@@ -10,7 +10,9 @@ defineProps({
 </script>
 
 <template>
-  <div>Wallet information</div>
+  <div>
+    <div>Wallet information</div>
+  </div>
 </template>
 
 <script>
@@ -24,7 +26,7 @@ const provider = new ethers.providers.JsonRpcProvider(
 
 //const balance = await provider.getBalance('ethers.eth');
 
-console.log(provider);
+//console.log(provider);
 
 export default {
   data() {

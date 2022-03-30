@@ -10,7 +10,9 @@ defineProps({
 </script>
 
 <template>
-  <h1 class="green">Tokens</h1>
+  <div>
+    <h1 class="green">Tokens</h1>
+  </div>
 </template>
 
 <style
