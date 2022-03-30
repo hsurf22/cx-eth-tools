@@ -17,10 +17,12 @@ defineProps({
       <tbody>
         <tr>
           <td>Network</td>
-          <td>{{ network.name }}</td>
+          <td>
+            <span v-if="network">{{ network.name }}</span>
+          </td>
         </tr>
         <tr>
-          <td>Balance(Eth)</td>
+          <td>Balance(eth)</td>
           <td>{{ balance }}</td>
         </tr>
         <tr>
@@ -30,6 +32,10 @@ defineProps({
         <tr>
           <td>ENS address for this wallet</td>
           <td>{{ ensAddress }}</td>
+        </tr>
+        <tr>
+          <td>Current gas price(gwei)</td>
+          <td>{{ gasPrice }}</td>
         </tr>
       </tbody>
     </table>
@@ -51,10 +57,11 @@ export default defineComponent({
     return {
       settingsStore: null,
       ethAddress: '',
-      network: '',
-      balance: '',
+      network: null,
+      balance: null,
       txCount: 0,
-      ensAddress: null
+      ensAddress: null,
+      gasPrice: null
     };
   },
   computed: {
@@ -70,7 +77,7 @@ export default defineComponent({
   methods: {
     async loadWalletInfo() {
       const balance = await provider.getBalance(this.ethAddress);
-      const balanceInEth = ethers.utils.formatEther(balance);
+      const balanceInEth = await ethers.utils.formatEther(balance);
       this.balance = balanceInEth;
 
       this.txCount = await provider.getTransactionCount(this.ethAddress);
@@ -78,6 +85,9 @@ export default defineComponent({
       this.ensAddress = await provider.lookupAddress(this.ethAddress);
 
       this.network = await provider.getNetwork();
+
+      const gas = await provider.getGasPrice();
+      this.gasPrice = await ethers.utils.formatUnits(gas, 'gwei');
     }
   },
   async mounted() {
